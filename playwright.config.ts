@@ -31,6 +31,11 @@ export default defineConfig({
     testIdAttribute: 'data-test-id',
     locale: 'en-GB',
     timezoneId: 'Europe/Paris',
+    // The application defaults to Spanish; e2e fixtures assert English copy.
+    storageState: {
+      cookies: [],
+      origins: [{ origin: baseUrl, localStorage: [{ name: 'locale', value: 'en' }] }],
+    },
   },
 
   /* Configure projects for major browsers */

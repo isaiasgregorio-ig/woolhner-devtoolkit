@@ -125,10 +125,21 @@ function activateOption(option: PaletteOption) {
     </c-button>
 
     <c-modal v-model:open="isModalOpen" class="palette-modal" shadow-xl important:max-w-650px important:pa-12px @keydown="handleKeydown">
-      <c-input-text ref="inputRef" v-model:value="searchPrompt" raw-text placeholder="Type to search a tool or a command..." autofocus clearable />
+      <c-input-text
+        ref="inputRef"
+        v-model:value="searchPrompt"
+        raw-text
+        :placeholder="$t('commandPalette.placeholder')"
+        autofocus
+        clearable
+      />
+
+      <p v-if="Object.keys(filteredSearchResult).length === 0" class="palette-empty">
+        {{ $t('commandPalette.noResults') }}
+      </p>
 
       <div v-for="(options, category) in filteredSearchResult" :key="category">
-        <div ml-3 mt-3 text-sm font-bold text-primary op-60>
+        <div ml-3 mt-3 text-sm text-primary font-bold op-60>
           {{ category }}
         </div>
         <command-palette-option v-for="option in options" :key="option.name" :option="option" :selected="selectedOptionIndex === getOptionIndex(option)" @activated="activateOption" />
@@ -150,5 +161,11 @@ function activateOption(option: PaletteOption) {
 .c-modal--overlay {
   align-items: flex-start !important;
   padding-top: 80px;
+}
+
+.palette-empty {
+  color: var(--wh-text-muted);
+  margin: 24px 12px;
+  text-align: center;
 }
 </style>

@@ -1,133 +1,116 @@
-<picture>
-    <source srcset="./.github/logo-dark.png" media="(prefers-color-scheme: light)">
-    <source srcset="./.github/logo-white.png" media="(prefers-color-scheme: dark)">
-    <img src="./.github/logo-dark.png" alt="logo">
-</picture>
-
 <p align="center">
-Useful tools for developer and people working in IT. <a href="https://it-tools.tech">Try it!</a>
+  <img src="./public/brand/woolhner-logo.jpeg" alt="Woolhner logo" width="180">
 </p>
 
-## Functionalities and roadmap
+<h1 align="center">Woolhner DevToolkit</h1>
 
-Please check the [issues](https://github.com/CorentinTh/it-tools/issues) to see if some feature listed to be implemented.
+<p align="center">
+  Herramientas prácticas que funcionan en tu navegador, para desarrolladores,
+  ingenieros web y profesionales de TI.
+</p>
 
-You have an idea of a tool? Submit a [feature request](https://github.com/CorentinTh/it-tools/issues/new/choose)!
+<p align="center">
+  <a href="https://woolhner.com">woolhner.com</a>
+</p>
 
-## Self host
+## Qué es
 
-Self host solutions for your homelab
+Woolhner DevToolkit es una derivación de
+[IT-Tools](https://github.com/CorentinTh/it-tools), el proyecto original de
+[Corentin Thomasset](https://corentin.tech). Conserva las 89 herramientas
+originales, añade tres utilidades reales para Cloudflare y reorganiza el
+directorio en once categorías:
 
-**From docker hub:**
+- Desarrollo
+- Generadores
+- Convertidores
+- Web y API
+- Redes
+- Seguridad
+- Texto y datos
+- Matemáticas
+- Imágenes y QR
+- Medición
+- Cloudflare
 
-```sh
-docker run -d --name it-tools --restart unless-stopped -p 8080:80 corentinth/it-tools:latest
-```
+La interfaz está en español de forma predeterminada, con inglés como idioma de
+respaldo. Todas las transformaciones se ejecutan localmente en el navegador: no
+hay cuentas, bases de datos ni analítica. Las herramientas que consultan un
+servicio externo (por ejemplo, la búsqueda de fabricantes por dirección MAC) lo
+indican en su propia interfaz.
 
-**From github packages:**
+### Utilidades Cloudflare incluidas
 
-```sh
-docker run -d --name it-tools --restart unless-stopped -p 8080:80 ghcr.io/corentinth/it-tools:latest
-```
+- **Generador de configuración de Wrangler**: crea `wrangler.toml` para Workers
+  con enlaces KV, D1, R2 y variables.
+- **Validador de configuración de Wrangler**: comprueba `wrangler.toml` o
+  `wrangler.jsonc` pegados y devuelve errores y advertencias accionables.
+- **Ayudante de cron de Cloudflare**: valida expresiones cron de Workers, las
+  explica en lenguaje natural y genera el bloque `[triggers]`.
 
-**Other solutions:**
+Estas tres herramientas funcionan completamente en el cliente; sus pruebas
+unitarias viven junto a los servicios en `src/tools/cloudflare/`.
 
-- [Cloudron](https://www.cloudron.io/store/tech.ittools.cloudron.html)
-- [Tipi](https://www.runtipi.io/docs/apps-available)
-- [Unraid](https://unraid.net/community/apps?q=it-tools)
+## Desarrollo
 
-## Contribute
-
-### Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) with the following extensions:
-
-- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur)
-- [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-- [i18n Ally](https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally)
-
-with the following settings:
-
-```json
-{
-  "editor.formatOnSave": false,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "i18n-ally.localesPaths": ["locales", "src/tools/*/locales"],
-  "i18n-ally.keystyle": "nested"
-}
-```
-
-### Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-### Project Setup
+Requiere Node.js 18+ y pnpm 9.11.0.
 
 ```sh
-pnpm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
+pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-### Type-Check, Compile and Minify for Production
+La aplicación estará disponible en `http://localhost:5173`.
+
+### Comandos útiles
 
 ```sh
-pnpm build
+pnpm typecheck              # Comprobación de tipos con vue-tsc
+pnpm lint                   # ESLint
+pnpm test                   # Pruebas unitarias (Vitest, modo watch)
+pnpm exec vitest run --environment jsdom  # Pruebas unitarias (una sola vez)
+pnpm build                  # Compilación estática de producción
+pnpm test:e2e               # Pruebas end-to-end (Playwright)
+pnpm preview                # Vista previa de la compilación en el puerto 5050
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+Para generar la estructura de una herramienta nueva:
 
 ```sh
-pnpm test
+pnpm run script:create:tool nombre-de-la-herramienta
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+Después añade la herramienta a la categoría correspondiente en
+`src/tools/index.ts` y crea sus textos en `locales/en.yml` y `locales/es.yml`.
 
-```sh
-pnpm lint
-```
+## Despliegue
 
-### Create a new tool
+La salida de `pnpm build` es un sitio estático compatible con Cloudflare Pages.
+Consulta [`DEPLOYMENT.md`](DEPLOYMENT.md) para el directorio de salida, las
+variables de entorno, las redirecciones SPA y la configuración de PWA.
 
-To create a new tool, there is a script that generate the boilerplate of the new tool, simply run:
+También puedes servir `dist/` con cualquier servidor de archivos estáticos que
+redirija las rutas desconocidas a `index.html`.
 
-```sh
-pnpm run script:create:tool my-tool-name
-```
+## Marca y diseño
 
-It will create a directory in `src/tools` with the correct files, and a the import in `src/tools/index.ts`. You will just need to add the imported tool in the proper category and develop the tool.
+La identidad visual usa el logotipo real de Woolhner y una paleta monocroma
+derivada de él: tinta negra, papel blanco y una escala neutra de grises. No se
+ha inventado ningún color, tipografía ni logotipo «oficial». El sistema de
+tokens, las decisiones documentadas y el origen de cada recurso están en
+[`BRAND.md`](BRAND.md).
 
-## Contributors
+## Atribución y licencia
 
-Big thanks to all the people who have already contributed!
+Este proyecto es una obra derivada de IT-Tools, creado por Corentin Thomasset y
+distribuido originalmente bajo GNU GPL-3.0. Se conservan el autor, la licencia,
+los avisos de terceros y el historial del repositorio original. Los cambios
+realizados por Woolhner se enumeran en [`UPSTREAM.md`](UPSTREAM.md).
 
-[![contributors](https://contrib.rocks/image?repo=corentinth/it-tools&refresh=1)](https://github.com/corentinth/it-tools/graphs/contributors)
+- Licencia: [GNU GPL-3.0](LICENSE)
+- Proyecto original: [CorentinTh/it-tools](https://github.com/CorentinTh/it-tools)
+- Autor original: [Corentin Thomasset](https://corentin.tech)
+- Mantenedor de la derivación: [Woolhner](https://woolhner.com)
 
-## Credits
-
-Coded with ❤️ by [Corentin Thomasset](https://corentin.tech?utm_source=it-tools&utm_medium=readme).
-
-This project is continuously deployed using [vercel.com](https://vercel.com).
-
-Contributor graph is generated using [contrib.rocks](https://contrib.rocks/preview?repo=corentinth/it-tools).
-
-<a href="https://www.producthunt.com/posts/it-tools?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-it&#0045;tools" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=345793&theme=light" alt="IT&#0032;Tools - Collection&#0032;of&#0032;handy&#0032;online&#0032;tools&#0032;for&#0032;devs&#0044;&#0032;with&#0032;great&#0032;UX | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
-<a href="https://www.producthunt.com/posts/it-tools?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-it&#0045;tools" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=345793&theme=light&period=daily" alt="IT&#0032;Tools - Collection&#0032;of&#0032;handy&#0032;online&#0032;tools&#0032;for&#0032;devs&#0044;&#0032;with&#0032;great&#0032;UX | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
-
-## License
-
-This project is under the [GNU GPLv3](LICENSE).
+No se ha enviado nada al repositorio original; todo el trabajo de esta
+derivación se realizó en una rama local.

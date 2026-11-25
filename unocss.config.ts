@@ -8,20 +8,25 @@ import {
 } from 'unocss';
 
 import { presetScrollbar } from 'unocss-preset-scrollbar';
+import { darkThemeTokens, lightThemeTokens } from './src/design/tokens';
 
 export default defineConfig({
   presets: [presetUno(), presetAttributify({ ignoreAttributes: ['size'] }), presetTypography(), presetScrollbar()],
   transformers: [transformerDirectives(), transformerVariantGroup()],
   theme: {
     colors: {
-      primary: '#1ea54c',
-
+      primary: lightThemeTokens.primary,
+      surface: lightThemeTokens.surface,
+      background: lightThemeTokens.background,
+      ink: lightThemeTokens.text,
+      muted: lightThemeTokens.textMuted,
     },
   },
   shortcuts: {
-    'pretty-scrollbar': 'scrollbar scrollbar-rounded scrollbar-thumb-color-gray-300 scrollbar-track-color-gray-100 dark:scrollbar-thumb-color-#424242 dark:scrollbar-track-color-#686868',
+    'pretty-scrollbar': `scrollbar scrollbar-rounded scrollbar-thumb-color-${lightThemeTokens.borderStrong} scrollbar-track-color-${lightThemeTokens.surfaceMuted} dark:scrollbar-thumb-color-${darkThemeTokens.borderStrong} dark:scrollbar-track-color-${darkThemeTokens.surfaceMuted}`,
     'divider': 'h-1px bg-current op-10',
-    'bg-surface': 'bg-#ffffff dark:bg-#232323',
-    'bg-background': 'bg-#f1f5f9 dark:bg-#1c1c1c',
+    'surface-card': `bg-${lightThemeTokens.surface} dark:bg-${darkThemeTokens.surface}`,
+    'surface-page': `bg-${lightThemeTokens.background} dark:bg-${darkThemeTokens.background}`,
+    'border-brand': `border-${lightThemeTokens.border} dark:border-${darkThemeTokens.borderStrong}`,
   },
 });

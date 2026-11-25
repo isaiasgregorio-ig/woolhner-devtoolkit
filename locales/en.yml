@@ -1,50 +1,64 @@
 home:
   categories:
     newestTools: Newest tools
+    recentTools: Recently used tools
     favoriteTools: 'Your favorite tools'
-    allTools: 'All the tools'
+    allTools: All tools
+    searchResults: 'Results ({count})'
     favoritesDndToolTip: 'Drag and drop to reorder favorites'
-  subtitle: 'Handy tools for developers'
+  subtitle: 'Practical tools for developers'
+  documentTitle: 'Woolhner DevToolkit - Tools for developers'
   toggleMenu: 'Toggle menu'
   home: Home
-  uiLib: 'UI Lib'
-  support: 'Support IT-Tools development'
-  buyMeACoffee: 'Buy me a coffee'
-  follow:
-    title: 'You like it-tools?'
-    p1: 'Give us a star on'
-    githubRepository: 'IT-Tools GitHub repository'
-    p2: 'or follow us on'
-    twitterXAccount: 'IT-Tools X account'
-    thankYou: 'Thank you!'
+  uiLib: 'UI library'
+  footer:
+    basedOn: 'Based on'
+    by: by
+    license: 'GPL-3.0'
+  noResults: 'No tools match your search.'
+  clearSearch: 'Clear search'
   nav:
     github: 'GitHub repository'
-    githubRepository: 'IT-Tools GitHub repository'
+    githubRepository: 'IT-Tools upstream repository'
     twitterX: 'X account'
-    twitterXAccount: 'IT Tools X account'
-    about: 'About  IT-Tools'
-    aboutLabel: 'About'
+    twitterXAccount: 'Woolhner X account'
+    about: About
+    aboutLabel: About
     darkMode: 'Dark mode'
     lightMode: 'Light mode'
     mode: 'Toggle dark/light mode'
 about:
   content: >
-    # About IT-Tools
+    # About Woolhner DevToolkit
 
-    This wonderful website, made with ❤ by [Corentin Thomasset](https://corentin.tech?utm_source=it-tools&utm_medium=about) , aggregates useful tools for developer and people working in IT. If you find it useful, please feel free to share it to people you think may find it useful too and don't forget to bookmark it in your shortcut bar!
+    Woolhner DevToolkit is a collection of practical, local-first tools for
+    developers, web engineers and IT professionals. It is maintained by
+    [Woolhner](https://woolhner.com) as a derivative of the original open-source
+    project [IT-Tools](https://github.com/CorentinTh/it-tools), created by
+    [Corentin Thomasset](https://corentin.tech).
 
-    IT Tools is open-source (under the GPL-3.0 license) and free, and will always be, but it costs me money to host and renew the domain name. If you want to support my work, and encourage me to add more tools, please consider supporting by [sponsoring me](https://www.buymeacoffee.com/cthmsst).
+    Every transformation runs in your browser. There are no accounts, no
+    databases and no analytics. Some tools (for example MAC address lookup)
+    clearly disclose when an external service is used.
+
+    ## License and attribution
+
+    This derivative is distributed under the original
+    [GNU GPL-3.0 license](https://www.gnu.org/licenses/gpl-3.0.html). The
+    original author and third-party notices are preserved in `UPSTREAM.md`,
+    `LICENSE` and `package.json`.
 
     ## Technologies
 
-    IT Tools is made in Vue.js (Vue 3) with the the Naive UI component library and is hosted and continuously deployed by Vercel. Third-party open-source libraries are used in some tools, you may find the complete list in the [package.json](https://github.com/CorentinTh/it-tools/blob/main/package.json) file of the repository.
+    Built with Vue 3, TypeScript, Vite, Naive UI, UnoCSS, Pinia and Vue I18n.
+    The static build is designed for Cloudflare Pages; see `DEPLOYMENT.md`.
 
-    ## Found a bug? A tool is missing?
+    ## Found a bug?
 
-    If you need a tool that is currently not present here, and you think can be useful, you are welcome to submit a feature request in the [issues section](https://github.com/CorentinTh/it-tools/issues/new/choose) in the GitHub repository.
-
-    And if you found a bug, or something doesn't work as expected, please file a bug report in the [issues section](https://github.com/CorentinTh/it-tools/issues/new/choose) in the GitHub repository.
-
+    Please report issues in the
+    [upstream issue tracker](https://github.com/CorentinTh/it-tools/issues/new/choose)
+    when they affect original tools, and document Woolhner-specific issues in
+    the product repository.
 404:
   notFound: '404 Not Found'
   sorry: 'Sorry, this page does not seem to exist'
@@ -55,22 +69,41 @@ favoriteButton:
   add: 'Add to favorites'
 toolCard:
   new: New
+commandPalette:
+  categories:
+    tools: Tools
+    actions: Actions
+    pages: Pages
+    external: External
+  placeholder: 'Search a tool or a command...'
+  noResults: 'No results found.'
+  randomTool: 'Random tool'
+  randomToolDescription: 'Open a random tool from the directory.'
+  toggleTheme: 'Toggle dark mode'
+  toggleThemeDescription: 'Switch between light and dark themes.'
+  upstreamRepository: 'Upstream repository'
+  upstreamDescription: 'View the original IT-Tools source code on GitHub.'
+  reportIssue: 'Report an issue'
+  reportIssueDescription: 'Report a bug in the upstream project.'
+  about: About
+  aboutDescription: 'Learn more about Woolhner DevToolkit.'
 search:
-  label: Search
+  label: 'Search tools'
+  placeholder: 'Search by name, description or keyword'
 tools:
   categories:
     favorite-tools: 'Your favorite tools'
-    crypto: Crypto
-    converter: Converter
-    web: Web
-    images and videos: 'Images & Videos'
     development: Development
-    network: Network
-    math: Math
+    generators: Generators
+    converters: Converters
+    'web & api': 'Web & API'
+    networking: Networking
+    security: Security
+    'text & data': 'Text & Data'
+    mathematics: Mathematics
+    'images & qr': 'Images & QR'
     measurement: Measurement
-    text: Text
-    data: Data
-
+    cloudflare: Cloudflare
   password-strength-analyser:
     title: Password strength analyser
     description: Discover the strength of your password with this client-side-only password strength analyser and crack time estimation tool.
@@ -392,3 +425,50 @@ tools:
   text-to-binary:
     title: Text to ASCII binary
     description: Convert text to its ASCII binary representation and vice-versa.
+
+  wrangler-config-generator:
+    title: 'Wrangler config generator'
+    description: 'Generate a wrangler.toml file for Workers with KV, D1, R2 bindings and variables. Runs entirely in your browser.'
+    workerName: 'Worker name'
+    entrypoint: 'Entry point (main)'
+    compatibilityDate: 'Compatibility date'
+    route: 'Route (optional)'
+    bindings: 'Bindings'
+    binding: Binding
+    namespaceId: 'Namespace ID'
+    databaseName: 'Database name'
+    databaseId: 'Database ID'
+    bucketName: 'Bucket name'
+    variable: Variable
+    variableName: 'Variable name'
+    value: Value
+    add: Add
+    remove: Remove
+    secretHint: 'Do not put secrets in vars. Use `wrangler secret put` or the Cloudflare dashboard instead.'
+    copy: Copy
+    copied: 'Configuration copied'
+  wrangler-config-validator:
+    title: 'Wrangler config validator'
+    description: 'Validate a pasted wrangler.toml or wrangler.jsonc configuration and get actionable errors and warnings.'
+    configLabel: 'Wrangler configuration'
+    configPlaceholder: 'Paste your wrangler.toml or wrangler.jsonc here'
+    privacyNote: 'Validation happens locally. The configuration is never sent to a server.'
+    results: Results
+    format: Format
+    worker: Worker
+    errors: Errors
+    warnings: Warnings
+    error: Error
+    warning: Warning
+    valid: 'Configuration is valid.'
+  cloudflare-cron-helper:
+    title: 'Cloudflare cron helper'
+    description: 'Validate Workers cron triggers, read them in plain language and generate the [triggers] block for wrangler.'
+    inputLabel: 'Cron expressions (one per line)'
+    hint: 'Cloudflare accepts standard 5-field expressions (minute, hour, day of month, month, day of week).'
+    results: 'Expression analysis'
+    empty: 'Add one cron expression per line.'
+    invalid: 'Invalid expression'
+    noValidExpressions: 'No valid expressions to export.'
+    copy: Copy
+    copied: 'Snippet copied'

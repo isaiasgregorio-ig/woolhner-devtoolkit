@@ -1,4 +1,8 @@
 /* TEAM */
-Developer: Corentin Thomasset
-Site: https://github.com/CorentinTh
-Twitter: @cthmsst
+Original developer: Corentin Thomasset
+Original project: https://github.com/CorentinTh/it-tools
+Derivative product: Woolhner DevToolkit — https://woolhner.com
+Original project license: GNU GPL-3.0
+
+/* THANKS */
+Built with the open-source Vue, TypeScript and Vite ecosystem.

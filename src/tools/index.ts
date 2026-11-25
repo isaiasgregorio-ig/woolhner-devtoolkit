@@ -87,14 +87,45 @@ import { tool as uuidGenerator } from './uuid-generator';
 import { tool as macAddressLookup } from './mac-address-lookup';
 import { tool as xmlFormatter } from './xml-formatter';
 import { tool as yamlViewer } from './yaml-viewer';
+import { tool as wranglerConfigGenerator } from './cloudflare/wrangler-config-generator';
+import { tool as wranglerConfigValidator } from './cloudflare/wrangler-config-validator';
+import { tool as cloudflareCronHelper } from './cloudflare/cloudflare-cron-helper';
 
+/**
+ * Categories are intentionally product-facing: each tool lives in exactly one
+ * category so the sidebar, search and home directory stay consistent.
+ */
 export const toolsByCategory: ToolCategory[] = [
   {
-    name: 'Crypto',
-    components: [tokenGenerator, hashText, bcrypt, uuidGenerator, ulidGenerator, cypher, bip39, hmacGenerator, rsaKeyPairGenerator, passwordStrengthAnalyser, pdfSignatureChecker],
+    name: 'Development',
+    components: [
+      gitMemo,
+      crontabGenerator,
+      jsonViewer,
+      jsonMinify,
+      sqlPrettify,
+      chmodCalculator,
+      dockerRunToDockerComposeConverter,
+      xmlFormatter,
+      yamlViewer,
+      emailNormalizer,
+      regexTester,
+      regexMemo,
+      htmlWysiwygEditor,
+    ],
   },
   {
-    name: 'Converter',
+    name: 'Generators',
+    components: [
+      tokenGenerator,
+      uuidGenerator,
+      ulidGenerator,
+      ipv6UlaGenerator,
+      loremIpsumGenerator,
+    ],
+  },
+  {
+    name: 'Converters',
     components: [
       dateTimeConverter,
       baseConverter,
@@ -110,6 +141,7 @@ export const toolsByCategory: ToolCategory[] = [
       yamlToToml,
       jsonToYaml,
       jsonToToml,
+      jsonToCsv,
       listConverter,
       tomlToJson,
       tomlToYaml,
@@ -119,7 +151,7 @@ export const toolsByCategory: ToolCategory[] = [
     ],
   },
   {
-    name: 'Web',
+    name: 'Web & API',
     components: [
       urlEncoder,
       htmlEntities,
@@ -127,12 +159,10 @@ export const toolsByCategory: ToolCategory[] = [
       deviceInformation,
       basicAuthGenerator,
       metaTagGenerator,
-      otpCodeGeneratorAndValidator,
       mimeTypes,
       jwtParser,
       keycodeInfo,
       slugifyString,
-      htmlWysiwygEditor,
       userAgentParser,
       httpStatusCodes,
       jsonDiff,
@@ -140,55 +170,58 @@ export const toolsByCategory: ToolCategory[] = [
     ],
   },
   {
-    name: 'Images and videos',
-    components: [qrCodeGenerator, wifiQrCodeGenerator, svgPlaceholderGenerator, cameraRecorder],
-  },
-  {
-    name: 'Development',
+    name: 'Networking',
     components: [
-      gitMemo,
+      ipv4SubnetCalculator,
+      ipv4AddressConverter,
+      ipv4RangeExpander,
+      macAddressLookup,
+      macAddressGenerator,
       randomPortGenerator,
-      crontabGenerator,
-      jsonViewer,
-      jsonMinify,
-      jsonToCsv,
-      sqlPrettify,
-      chmodCalculator,
-      dockerRunToDockerComposeConverter,
-      xmlFormatter,
-      yamlViewer,
-      emailNormalizer,
-      regexTester,
-      regexMemo,
     ],
   },
   {
-    name: 'Network',
-    components: [ipv4SubnetCalculator, ipv4AddressConverter, ipv4RangeExpander, macAddressLookup, macAddressGenerator, ipv6UlaGenerator],
-  },
-  {
-    name: 'Math',
-    components: [mathEvaluator, etaCalculator, percentageCalculator],
-  },
-  {
-    name: 'Measurement',
-    components: [chronometer, temperatureConverter, benchmarkBuilder],
-  },
-  {
-    name: 'Text',
+    name: 'Security',
     components: [
-      loremIpsumGenerator,
+      hashText,
+      bcrypt,
+      cypher,
+      hmacGenerator,
+      rsaKeyPairGenerator,
+      passwordStrengthAnalyser,
+      pdfSignatureChecker,
+      otpCodeGeneratorAndValidator,
+      bip39,
+      stringObfuscator,
+    ],
+  },
+  {
+    name: 'Text & Data',
+    components: [
+      phoneParserAndFormatter,
+      ibanValidatorAndParser,
       textStatistics,
       emojiPicker,
-      stringObfuscator,
       textDiff,
       numeronymGenerator,
       asciiTextDrawer,
     ],
   },
   {
-    name: 'Data',
-    components: [phoneParserAndFormatter, ibanValidatorAndParser],
+    name: 'Mathematics',
+    components: [mathEvaluator, etaCalculator, percentageCalculator],
+  },
+  {
+    name: 'Images & QR',
+    components: [qrCodeGenerator, wifiQrCodeGenerator, svgPlaceholderGenerator, cameraRecorder],
+  },
+  {
+    name: 'Measurement',
+    components: [chronometer, temperatureConverter, benchmarkBuilder],
+  },
+  {
+    name: 'Cloudflare',
+    components: [wranglerConfigGenerator, wranglerConfigValidator, cloudflareCronHelper],
   },
 ];
 

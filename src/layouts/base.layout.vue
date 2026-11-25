@@ -1,26 +1,23 @@
 <script lang="ts" setup>
-import { NIcon, useThemeVars } from 'naive-ui';
+import { NIcon } from 'naive-ui';
 
 import { RouterLink } from 'vue-router';
-import { Heart, Home2, Menu2 } from '@vicons/tabler';
+import { Home2, Menu2 } from '@vicons/tabler';
 
 import { storeToRefs } from 'pinia';
-import HeroGradient from '../assets/hero-gradient.svg?component';
 import MenuLayout from '../components/MenuLayout.vue';
 import NavbarButtons from '../components/NavbarButtons.vue';
 import { useStyleStore } from '@/stores/style.store';
 import { config } from '@/config';
 import type { ToolCategory } from '@/tools/tools.types';
 import { useToolStore } from '@/tools/tools.store';
-import { useTracker } from '@/modules/tracker/tracker.services';
 import CollapsibleToolMenu from '@/components/CollapsibleToolMenu.vue';
+import { brandTokens } from '@/design/tokens';
 
-const themeVars = useThemeVars();
 const styleStore = useStyleStore();
 const version = config.app.version;
 const commitSha = config.app.lastCommitSha.slice(0, 7);
 
-const { tracker } = useTracker();
 const { t } = useI18n();
 
 const toolStore = useToolStore();
@@ -35,14 +32,16 @@ const tools = computed<ToolCategory[]>(() => [
 <template>
   <MenuLayout class="menu-layout" :class="{ isSmallScreen: styleStore.isSmallScreen }">
     <template #sider>
-      <RouterLink to="/" class="hero-wrapper">
-        <HeroGradient class="gradient" />
-        <div class="text-wrapper">
-          <div class="title">
-            IT - TOOLS
+      <RouterLink to="/" class="brand-wrapper">
+        <img :src="brandTokens.logo" alt="Woolhner" class="brand-logo" width="56" height="56">
+        <div class="brand-text">
+          <div class="brand-name">
+            Woolhner
           </div>
-          <div class="divider" />
-          <div class="subtitle">
+          <div class="brand-product">
+            DevToolkit
+          </div>
+          <div class="brand-subtitle">
             {{ $t('home.subtitle') }}
           </div>
         </div>
@@ -60,29 +59,41 @@ const tools = computed<ToolCategory[]>(() => [
         <CollapsibleToolMenu :tools-by-category="tools" />
 
         <div class="footer">
-          <div>
-            IT-Tools
-
-            <c-link target="_blank" rel="noopener" :href="`https://github.com/CorentinTh/it-tools/tree/v${version}`">
+          <div class="footer-version">
+            Woolhner DevToolkit
+            <c-link
+              target="_blank"
+              rel="noopener"
+              :href="`https://github.com/CorentinTh/it-tools/tree/v${version}`"
+            >
               v{{ version }}
             </c-link>
-
-            <template v-if="commitSha && commitSha.length > 0">
-              -
+            <template v-if="commitSha">
+              ·
               <c-link
                 target="_blank"
                 rel="noopener"
-                type="primary"
                 :href="`https://github.com/CorentinTh/it-tools/tree/${commitSha}`"
               >
                 {{ commitSha }}
               </c-link>
             </template>
           </div>
+          <div class="footer-attribution">
+            {{ $t('home.footer.basedOn') }}
+            <c-link target="_blank" rel="noopener" href="https://github.com/CorentinTh/it-tools">
+              IT-Tools
+            </c-link>
+            {{ $t('home.footer.by') }}
+            <c-link target="_blank" rel="noopener" href="https://corentin.tech">
+              Corentin Thomasset
+            </c-link>
+            · {{ $t('home.footer.license') }}
+          </div>
           <div>
             © {{ new Date().getFullYear() }}
-            <c-link target="_blank" rel="noopener" href="https://corentin.tech?utm_source=it-tools&utm_medium=footer">
-              Corentin Thomasset
+            <c-link target="_blank" rel="noopener" href="https://woolhner.com">
+              Woolhner
             </c-link>
           </div>
         </div>
@@ -90,50 +101,34 @@ const tools = computed<ToolCategory[]>(() => [
     </template>
 
     <template #content>
-      <div flex items-center justify-center gap-2>
+      <div class="topbar">
         <c-button
           circle
           variant="text"
           :aria-label="$t('home.toggleMenu')"
           @click="styleStore.isMenuCollapsed = !styleStore.isMenuCollapsed"
         >
-          <NIcon size="25" :component="Menu2" />
+          <NIcon size="22" :component="Menu2" />
         </c-button>
 
         <c-tooltip :tooltip="$t('home.home')" position="bottom">
           <c-button to="/" circle variant="text" :aria-label="$t('home.home')">
-            <NIcon size="25" :component="Home2" />
+            <NIcon size="22" :component="Home2" />
           </c-button>
         </c-tooltip>
 
-        <c-tooltip :tooltip="$t('home.uiLib')" position="bottom">
-          <c-button v-if="config.app.env === 'development'" to="/c-lib" circle variant="text" :aria-label="$t('home.uiLib')">
+        <c-tooltip v-if="config.app.env === 'development'" :tooltip="$t('home.uiLib')" position="bottom">
+          <c-button circle variant="text" to="/c-lib" :aria-label="$t('home.uiLib')">
             <icon-mdi:brush-variant text-20px />
           </c-button>
         </c-tooltip>
 
         <command-palette />
 
+        <div class="topbar-spacer" />
+
         <locale-selector v-if="!styleStore.isSmallScreen" />
-
-        <div>
-          <NavbarButtons v-if="!styleStore.isSmallScreen" />
-        </div>
-
-        <c-tooltip position="bottom" :tooltip="$t('home.support')">
-          <c-button
-            round
-            href="https://www.buymeacoffee.com/cthmsst"
-            rel="noopener"
-            target="_blank"
-            class="support-button"
-            :bordered="false"
-            @click="() => tracker.trackEvent({ eventName: 'Support button clicked' })"
-          >
-            {{ $t('home.buyMeACoffee') }}
-            <NIcon v-if="!styleStore.isSmallScreen" :component="Heart" ml-2 />
-          </c-button>
-        </c-tooltip>
+        <NavbarButtons v-if="!styleStore.isSmallScreen" />
       </div>
       <slot />
     </template>
@@ -141,78 +136,79 @@ const tools = computed<ToolCategory[]>(() => [
 </template>
 
 <style lang="less" scoped>
-// ::v-deep(.n-layout-scroll-container) {
-//     @percent: 4%;
-//     @position: 25px;
-//     @size: 50px;
-//     @color: #eeeeee25;
-//     background-image: radial-gradient(@color @percent, transparent @percent),
-//         radial-gradient(@color @percent, transparent @percent);
-//     background-position: 0 0, @position @position;
-//     background-size: @size @size;
-// }
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 20px;
+}
 
-.support-button {
-  background: rgb(37, 99, 108);
-  background: linear-gradient(48deg, rgba(37, 99, 108, 1) 0%, rgba(59, 149, 111, 1) 60%, rgba(20, 160, 88, 1) 100%);
-  color: #fff !important;
-  transition: padding ease 0.2s !important;
-
-  &:hover {
-    color: #fff;
-    padding-left: 30px;
-    padding-right: 30px;
-  }
+.topbar-spacer {
+  flex: 1 1 auto;
 }
 
 .footer {
   text-align: center;
-  color: #838587;
+  color: var(--wh-text-muted);
+  font-size: 12px;
+  line-height: 1.7;
   margin-top: 20px;
   padding: 20px 0;
+
+  .footer-version {
+    font-weight: 600;
+    color: var(--wh-text);
+  }
+
+  .footer-attribution {
+    max-width: 220px;
+    margin: 0 auto;
+  }
 }
 
 .sider-content {
-  padding-top: 160px;
-  padding-bottom: 200px;
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
 
-.hero-wrapper {
-  position: absolute;
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  border-bottom: 1px solid var(--wh-border);
+  text-decoration: none;
+  color: var(--wh-text);
+}
+
+.brand-logo {
   display: block;
-  left: 0;
-  width: 100%;
-  z-index: 10;
-  overflow: hidden;
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
 
-  .gradient {
-    margin-top: -65px;
-  }
+.brand-text {
+  min-width: 0;
+}
 
-  .text-wrapper {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    top: 16px;
-    color: #fff;
+.brand-name {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
 
-    .title {
-      font-size: 25px;
-      font-weight: 600;
-    }
+.brand-product {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
 
-    .divider {
-      width: 50px;
-      height: 2px;
-      border-radius: 4px;
-      background-color: v-bind('themeVars.primaryColor');
-      margin: 0 auto 5px;
-    }
-
-    .subtitle {
-      font-size: 16px;
-    }
-  }
+.brand-subtitle {
+  font-size: 11px;
+  color: var(--wh-text-muted);
+  line-height: 1.4;
 }
 </style>

@@ -1,72 +1,398 @@
+"404":
+  notFound: 404 No encontrado
+  sorry: Lo sentimos, esta página no parece existir
+  maybe: Tal vez el caché esté haciendo algo raro. ¿Pruebas a recargar forzando la actualización?
+  backHome: Volver al inicio
 home:
   categories:
-    newestTools: Nuevas herramientas
-    favoriteTools: 'Tus herramientas favoritas'
-    allTools: 'Todas las herramientas'
-    favoritesDndToolTip: 'Arrastra y suelta para reordenar favoritos'
-  subtitle: 'Herramientas practicas para desarrolladores'
-  toggleMenu: 'Toggle menu'
-  home: Home
-  uiLib: 'UI Lib'
-  support: 'Apoyar el desarrollo de IT-Tools'
-  buyMeACoffee: 'Buy me a coffee'
-  follow:
-    title: 'Te gustan las it-tools?'
-    p1: 'Danos una estrella en'
-    githubRepository: 'Repositorio de IT-Tools en GitHub'
-    p2: 'o síguenos en'
-    twitterXAccount: 'Cuenta de X de IT-Tools'
-    thankYou: 'Muchas gracias!'
+    newestTools: Herramientas nuevas
+    recentTools: Herramientas usadas recientemente
+    favoriteTools: Tus herramientas favoritas
+    allTools: Todas las herramientas
+    searchResults: Resultados ({count})
+    favoritesDndToolTip: Arrastra y suelta para reordenar los favoritos
+  subtitle: Herramientas prácticas para desarrolladores
+  documentTitle: Woolhner DevToolkit - Herramientas para desarrolladores
+  toggleMenu: Alternar menú
+  home: Inicio
+  uiLib: Biblioteca de UI
+  footer:
+    basedOn: Basado en
+    by: por
+    license: GPL-3.0
+  noResults: Ninguna herramienta coincide con tu búsqueda.
+  clearSearch: Borrar búsqueda
   nav:
-    github: 'Repositorio en github'
-    githubRepository: 'IT-Tools GitHub repository'
-    twitterX: 'Cuenta de X'
-    twitterXAccount: 'Cuenta de X de IT Tools'
-    about: 'Sobre  IT-Tools'
-    aboutLabel: 'Sobre'
-    darkMode: 'Modo obscuro'
-    lightMode: 'Modo claro'
-    mode: 'Alternar modo oscuro/claro'
+    github: Repositorio de GitHub
+    githubRepository: Repositorio original de IT-Tools en GitHub
+    twitterX: Cuenta X
+    twitterXAccount: Cuenta X de Woolhner
+    about: Acerca de
+    aboutLabel: Acerca de
+    darkMode: Modo oscuro
+    lightMode: Modo claro
+    mode: Alternar modo claro/oscuro
 about:
-  content: >
-    # Sobre IT-Tools
+  content: |
+    # Acerca de Woolhner DevToolkit
 
-    Este maravilloso sitio web, hecho con ❤ por [Corentin Thomasset](https://corentin.tech?utm_source=it-tools&utm_medium=about) , agrega herramientas útiles para desarrolladores y personas que trabajan en IT. Si lo encuentra útil, no dude en compartirlo con las personas que crea que también pueden encontrarlo útil y ¡no olvide marcarlo como favorito en su barra de accesos directos!
+    Woolhner DevToolkit es una colección de herramientas prácticas que funcionan
+    primero en el navegador, pensadas para desarrolladores, ingenieros web y
+    profesionales de TI. Es mantenido por [Woolhner](https://woolhner.com) como una
+    derivación del proyecto original de código abierto
+    [IT-Tools](https://github.com/CorentinTh/it-tools), creado por
+    [Corentin Thomasset](https://corentin.tech).
 
-    IT Tools es de código abierto (under the GPL-3.0 license) y gratis, y siempre lo será, pero me cuesta dinero alojar y renovar el nombre de dominio. Si desea apoyar mi trabajo y animarme a agregar más herramientas, considere apoyarme a través de[sponsoring me](https://www.buymeacoffee.com/cthmsst).
+    Cada transformación se realiza en tu navegador. No hay cuentas, bases de datos
+    ni analítica. Algunas herramientas (por ejemplo, la consulta de direcciones MAC)
+    indican claramente cuándo se usa un servicio externo.
+
+    ## Licencia y atribución
+
+    Esta derivación se distribuye bajo la licencia original
+    [GNU GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.html). Se conservan el autor
+    original y los avisos de terceros en `UPSTREAM.md`, `LICENSE` y
+    `package.json`.
 
     ## Tecnologías
 
-    IT Tools está creado en Vue.js (Vue 3) con la biblioteca de componentes Naive UI y Vercel lo aloja y lo implementa continuamente. En algunas herramientas se utilizan bibliotecas de código abierto de terceros; puede encontrar la lista completa en [package.json](https://github.com/CorentinTh/it-tools/blob/main/package.json) archivo del repositorio.
+    Construido con Vue 3, TypeScript, Vite, Naive UI, UnoCSS, Pinia y Vue I18n.
+    La compilación estática está diseñada para Cloudflare Pages; consulta
+    `DEPLOYMENT.md`.
 
-    ## ¿Encontraste un error? ¿Falta una herramienta?
+    ## ¿Encontraste un error?
 
-    Si necesita una herramienta que actualmente no está presente aquí y cree que puede ser útil, puede enviar una solicitud de función en el [issues section](https://github.com/CorentinTh/it-tools/issues/new/choose) en el repositorio de GitHub.
-
-    Y si encontró un error o algo no funciona como se esperaba, presente un reporte de error en el [issues section](https://github.com/CorentinTh/it-tools/issues/new/choose) en el repositorio de GitHub.
-
-404:
-  notFound: '404 Not Found'
-  sorry: 'Lo sentimos, esta página no parece existir'
-  maybe: 'Tal vez el caché esté haciendo cosas raras, ¿probamos a refrescar forzosamente?'
-  backHome: 'Back home'
+    Informa de los problemas que afecten a las herramientas originales en el
+    [registro de incidencias original](https://github.com/CorentinTh/it-tools/issues/new/choose)
+    y documenta los problemas específicos de Woolhner en el repositorio del
+    producto.
 favoriteButton:
-  remove: 'Quitar de favoritos'
-  add: 'Añadir a favoritos'
+  remove: Quitar de favoritos
+  add: Añadir a favoritos
 toolCard:
   new: Nuevo
+commandPalette:
+  categories:
+    tools: Herramientas
+    actions: Acciones
+    pages: Páginas
+    external: Externos
+  placeholder: Busca una herramienta o un comando...
+  noResults: No se encontraron resultados.
+  randomTool: Herramienta aleatoria
+  randomToolDescription: Abre una herramienta aleatoria del directorio.
+  toggleTheme: Alternar modo oscuro
+  toggleThemeDescription: Cambia entre el tema claro y el oscuro.
+  upstreamRepository: Repositorio original
+  upstreamDescription: Ver el código fuente original de IT-Tools en GitHub.
+  reportIssue: Informar de un problema
+  reportIssueDescription: Informar de un error en el proyecto original.
+  about: Acerca de
+  aboutDescription: Más información sobre Woolhner DevToolkit.
 search:
-  label: Buscar
+  label: Buscar herramientas
+  placeholder: Busca por nombre, descripción o palabra clave
 tools:
   categories:
-    favorite-tools: 'Tus herramientas favoritas'
-    crypto: Crypto
-    converter: Converter
-    web: Web
-    images and videos: 'Images & Videos'
-    development: Development
-    network: Network
-    math: Math
-    measurement: Measurement
-    text: Text
-    data: Data
+    favorite-tools: Tus herramientas favoritas
+    development: Desarrollo
+    generators: Generadores
+    converters: Convertidores
+    web & api: Web y API
+    networking: Redes
+    security: Seguridad
+    text & data: Texto y datos
+    mathematics: Matemáticas
+    images & qr: Imágenes y QR
+    measurement: Medición
+    cloudflare: Cloudflare
+  password-strength-analyser:
+    title: Analizador de fuerza de contraseñas
+    description: Descubre la fuerza de tu contraseña con este analizador que funciona solo en el navegador y estima el tiempo necesario para descifrarla.
+  chronometer:
+    title: Cronómetro
+    description: Mide la duración de algo. Básicamente un cronómetro con funciones sencillas.
+  token-generator:
+    title: Generador de tokens
+    description: "Genera cadenas aleatorias con los caracteres que quieras: letras mayúsculas o minúsculas, números y/o símbolos."
+    uppercase: Mayúsculas (ABC...)
+    lowercase: Minúsculas (abc...)
+    numbers: Números (123...)
+    symbols: Símbolos (!-;...)
+    length: Longitud
+    tokenPlaceholder: El token...
+    copied: Token copiado al portapapeles
+    button:
+      copy: Copiar
+      refresh: Actualizar
+  percentage-calculator:
+    title: Calculadora de porcentajes
+    description: Calcula fácilmente porcentajes de un valor a otro, o un valor a partir de un porcentaje.
+  svg-placeholder-generator:
+    title: Generador de marcadores SVG
+    description: Genera imágenes SVG para usarlas como marcadores de posición en tus aplicaciones.
+  json-to-csv:
+    title: JSON a CSV
+    description: Convierte JSON a CSV con detección automática de encabezados.
+  camera-recorder:
+    title: Grabadora de cámara
+    description: Toma una foto o graba un vídeo con tu webcam o cámara.
+  keycode-info:
+    title: Información de códigos de tecla
+    description: Consulta el keycode, el code, la ubicación y los modificadores de cualquier tecla pulsada.
+  emoji-picker:
+    title: Selector de emojis
+    description: Copia y pega emojis fácilmente y consulta su unicode y sus puntos de código.
+  color-converter:
+    title: Conversor de colores
+    description: Convierte colores entre distintos formatos (hex, rgb, hsl y nombre CSS).
+  bcrypt:
+    title: Bcrypt
+    description: Hashea y compara cadenas de texto con bcrypt. Bcrypt es una función de hash de contraseñas basada en el cifrado Blowfish.
+  crontab-generator:
+    title: Generador de crontab
+    description: Valida y genera una crontab y obtiene una descripción en lenguaje natural del cronograma.
+  http-status-codes:
+    title: Códigos de estado HTTP
+    description: La lista de todos los códigos de estado HTTP, su nombre y su significado.
+  sql-prettify:
+    title: Embellecedor y formateador de SQL
+    description: Formatea y embellece tus consultas SQL en línea (admite varios dialectos SQL).
+  benchmark-builder:
+    title: Creador de benchmarks
+    description: Compara fácilmente el tiempo de ejecución de tareas con este sencillo creador de benchmarks en línea.
+  git-memo:
+    title: Hoja de trucos de Git
+    description: Git es un software de control de versiones descentralizado. Con esta hoja de trucos tendrás a mano los comandos Git más habituales.
+  slugify-string:
+    title: Convertir a slug
+    description: Convierte una cadena en una URL, un nombre de archivo o un identificador seguro.
+  encryption:
+    title: Cifrar / descifrar texto
+    description: Cifra texto en claro y descifra texto cifrado con algoritmos como AES, TripleDES, Rabbit o RC4.
+  random-port-generator:
+    title: Generador de puertos aleatorios
+    description: Genera números de puerto aleatorios fuera del rango de puertos «conocidos» (0-1023).
+  yaml-prettify:
+    title: Embellecedor y formateador de YAML
+    description: Embellece tu cadena YAML en un formato legible y cómodo.
+  eta-calculator:
+    title: Calculadora de ETA
+    description: Una calculadora de ETA (tiempo estimado de llegada) para determinar la hora aproximada de finalización de una tarea, por ejemplo, la hora y la duración de una descarga.
+  roman-numeral-converter:
+    title: Conversor de números romanos
+    description: Convierte números romanos a números y números a números romanos.
+  hmac-generator:
+    title: Generador de HMAC
+    description: Calcula un código de autenticación de mensaje basado en hash (HMAC) usando una clave secreta y tu función de hash preferida.
+  bip39-generator:
+    title: Generador de frase de contraseña BIP39
+    description: Genera una frase de contraseña BIP39 a partir de una frase mnemotécnica existente o aleatoria, u obtiene la mnemotécnica a partir de la frase de contraseña.
+  base64-file-converter:
+    title: Conversor de archivos a Base64
+    description: Convierte una cadena, un archivo o una imagen a su representación base64.
+  list-converter:
+    title: Conversor de listas
+    description: Esta herramienta procesa datos por columnas y aplica varios cambios (transponer, añadir prefijo y sufijo, invertir la lista, ordenar, pasar a minúsculas y truncar valores) a cada fila.
+  base64-string-converter:
+    title: Codificador/decodificador de cadenas Base64
+    description: Codifica y decodifica cadenas a su representación base64.
+  toml-to-yaml:
+    title: TOML a YAML
+    description: Analiza y convierte TOML a YAML.
+  math-evaluator:
+    title: Evaluador matemático
+    description: Una calculadora para evaluar expresiones matemáticas. Puedes usar funciones como sqrt, cos, sin, abs, etc.
+  json-to-yaml-converter:
+    title: Conversor de JSON a YAML
+    description: Convierte JSON a YAML fácilmente con este conversor en línea en tiempo real.
+  url-parser:
+    title: Analizador de URL
+    description: Divide una URL en sus partes constituyentes (protocolo, origen, parámetros, puerto, usuario y contraseña, etc.).
+  iban-validator-and-parser:
+    title: Validador y analizador de IBAN
+    description: Valida y analiza números IBAN. Comprueba si un IBAN es válido y obtiene el país, el BBAN, si es un QR-IBAN y el formato legible del IBAN.
+  user-agent-parser:
+    title: Analizador de user-agent
+    description: Detecta y analiza el navegador, el motor, el sistema operativo, la CPU y el tipo/modelo de dispositivo a partir de una cadena user-agent.
+  numeronym-generator:
+    title: Generador de numerónimos
+    description: Un numerónimo es una palabra en la que un número forma una abreviatura. Por ejemplo, «i18n» es un numerónimo de «internationalization», donde 18 representa el número de letras entre la primera i y la última n.
+  case-converter:
+    title: Conversor de mayúsculas y minúsculas
+    description: Transforma el uso de mayúsculas y minúsculas de una cadena y elige entre distintos formatos.
+  html-entities:
+    title: Escapar entidades HTML
+    description: Escapa o desescapa entidades HTML (sustituye caracteres como <, >, &, " y ' por su versión HTML).
+  json-prettify:
+    title: Embellecedor y formateador de JSON
+    description: Embellece tu cadena JSON en un formato legible y cómodo.
+  docker-run-to-docker-compose-converter:
+    title: Conversor de docker run a Docker Compose
+    description: Transforma comandos «docker run» en archivos docker-compose.
+  mac-address-lookup:
+    title: Consulta de direcciones MAC
+    description: Consulta el proveedor y el fabricante de un dispositivo a partir de su dirección MAC.
+  mime-types:
+    title: Tipos MIME
+    description: Convierte tipos MIME en extensiones de archivo y viceversa.
+  toml-to-json:
+    title: TOML a JSON
+    description: Analiza y convierte TOML a JSON.
+  lorem-ipsum-generator:
+    title: Generador de Lorem ipsum
+    description: Lorem ipsum es un texto de marcador de posición que se usa habitualmente para demostrar la forma visual de un documento o una tipografía sin depender de contenido con sentido.
+  qrcode-generator:
+    title: Generador de códigos QR
+    description: Genera y descarga un código QR para una URL (o simplemente texto plano) y personaliza los colores de fondo y de primer plano.
+  wifi-qrcode-generator:
+    title: Generador de código QR para WiFi
+    description: Genera y descarga códigos QR para conectarte rápidamente a redes WiFi.
+  xml-formatter:
+    title: Formateador de XML
+    description: Embellece tu cadena XML en un formato legible y cómodo.
+  temperature-converter:
+    title: Conversor de temperatura
+    description: Conversiones de grados entre Kelvin, Celsius, Fahrenheit, Rankine, Delisle, Newton, Réaumur y Rømer.
+  chmod-calculator:
+    title: Calculadora de chmod
+    description: Calcula tus permisos y comandos chmod con esta calculadora en línea.
+  rsa-key-pair-generator:
+    title: Generador de pares de claves RSA
+    description: Genera un nuevo par aleatorio de claves privada y pública PEM RSA.
+  html-wysiwyg-editor:
+    title: Editor HTML WYSIWYG
+    description: Editor HTML WYSIWYG en línea, rico en funciones, que genera el código fuente del contenido al instante.
+  yaml-to-toml:
+    title: YAML a TOML
+    description: Analiza y convierte YAML a TOML.
+  mac-address-generator:
+    title: Generador de direcciones MAC
+    description: Indica la cantidad y el prefijo. Las direcciones MAC se generarán en el caso que elijas (mayúsculas o minúsculas).
+  json-diff:
+    title: Comparador de JSON
+    description: Compara dos objetos JSON y muestra sus diferencias.
+  jwt-parser:
+    title: Analizador de JWT
+    description: Analiza y decodifica tu JSON Web Token (JWT) y muestra su contenido.
+  date-converter:
+    title: Conversor de fecha y hora
+    description: Convierte fechas y horas en distintos formatos.
+  phone-parser-and-formatter:
+    title: Analizador y formateador de números de teléfono
+    description: Analiza, valida y formatea números de teléfono. Consulta información como el código de país, el tipo, etc.
+  ipv4-subnet-calculator:
+    title: Calculadora de subredes IPv4
+    description: Analiza tus bloques CIDR IPv4 y obtén toda la información que necesitas sobre la subred.
+  og-meta-generator:
+    title: Generador de metadatos Open Graph
+    description: Genera etiquetas meta HTML de open graph y redes sociales para tu sitio web.
+  ipv6-ula-generator:
+    title: Generador de ULA IPv6
+    description: Genera tus propias direcciones IP locales no enrutables para tu red según RFC4193.
+  hash-text:
+    title: Hashear texto
+    description: "Hashea una cadena de texto con la función que necesites: MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3 o RIPEMD160."
+  json-to-toml:
+    title: JSON a TOML
+    description: Analiza y convierte JSON a TOML.
+  device-information:
+    title: Información del dispositivo
+    description: Consulta información sobre tu dispositivo actual (tamaño de pantalla, ratio de píxeles, user agent, etc.).
+  pdf-signature-checker:
+    title: Verificador de firmas PDF
+    description: Verifica las firmas de un archivo PDF. Un PDF firmado contiene una o más firmas que permiten determinar si el contenido se ha modificado desde la firma.
+  json-minify:
+    title: Minificador de JSON
+    description: Minifica y comprime tu JSON eliminando los espacios innecesarios.
+  ulid-generator:
+    title: Generador de ULID
+    description: Genera identificadores ULID (Universally Unique Lexicographically Sortable Identifier) aleatorios.
+  string-obfuscator:
+    title: Ofuscador de cadenas
+    description: Ofusca una cadena (como un secreto, un IBAN o un token) para que se pueda compartir e identificar sin revelar su contenido.
+  base-converter:
+    title: Conversor de bases numéricas
+    description: Convierte un número entre bases (decimal, hexadecimal, binario, octal, base64, etc.).
+  yaml-to-json-converter:
+    title: Conversor de YAML a JSON
+    description: Convierte YAML a JSON fácilmente con este conversor en línea en tiempo real.
+  uuid-generator:
+    title: Generador de UUID
+    description: Un identificador único universal (UUID) es un número de 128 bits usado para identificar información en sistemas informáticos. El número de UUID posibles es 16^32, es decir, 2^128 o unos 3,4 x 10^38 (¡muchos!).
+  ipv4-address-converter:
+    title: Conversor de direcciones IPv4
+    description: Convierte una dirección IP a decimal, binario, hexadecimal o incluso a una representación IPv6.
+  text-statistics:
+    title: Estadísticas de texto
+    description: "Consulta información sobre un texto: número de caracteres, número de palabras, tamaño en bytes, etc."
+  text-to-nato-alphabet:
+    title: Texto al alfabeto de la OTAN
+    description: Transforma un texto en el alfabeto fonético de la OTAN para su transmisión oral.
+  basic-auth-generator:
+    title: Generador de autenticación básica
+    description: Genera una cabecera base64 de autenticación básica a partir de un usuario y una contraseña.
+  text-to-unicode:
+    title: Texto a Unicode
+    description: Analiza y convierte texto a Unicode y viceversa.
+  ipv4-range-expander:
+    title: Expansor de rangos IPv4
+    description: A partir de una dirección IPv4 inicial y otra final, calcula una subred IPv4 válida junto con su notación CIDR.
+  text-diff:
+    title: Comparador de texto
+    description: Compara dos textos y muestra sus diferencias.
+  otp-generator:
+    title: Generador de códigos OTP
+    description: Genera y valida códigos OTP (contraseñas de un solo uso) basados en tiempo para la autenticación de multifactor.
+  url-encoder:
+    title: Codificador/decodificador de URL
+    description: Codifica texto al formato de URL (también llamado «percent-encoded») o decodifícalo.
+  text-to-binary:
+    title: Texto a binario ASCII
+    description: Convierte texto a su representación binaria ASCII y viceversa.
+  wrangler-config-generator:
+    title: Generador de configuración de Wrangler
+    description: Genera un archivo wrangler.toml para Workers con enlaces KV, D1, R2 y variables. Todo funciona en tu navegador.
+    workerName: Nombre del Worker
+    entrypoint: Punto de entrada (main)
+    compatibilityDate: Fecha de compatibilidad
+    route: Ruta (opcional)
+    bindings: Enlaces
+    binding: Enlace
+    namespaceId: ID del espacio de nombres
+    databaseName: Nombre de la base de datos
+    databaseId: ID de la base de datos
+    bucketName: Nombre del bucket
+    variable: Variable
+    variableName: Nombre de la variable
+    value: Valor
+    add: Añadir
+    remove: Quitar
+    secretHint: No pongas secretos en vars. Usa `wrangler secret put` o el panel de Cloudflare.
+    copy: Copiar
+    copied: Configuración copiada
+  wrangler-config-validator:
+    title: Validador de configuración de Wrangler
+    description: Valida una configuración wrangler.toml o wrangler.jsonc pegada y obtén errores y advertencias accionables.
+    configLabel: Configuración de Wrangler
+    configPlaceholder: Pega aquí tu wrangler.toml o wrangler.jsonc
+    privacyNote: La validación se realiza localmente. La configuración nunca se envía a un servidor.
+    results: Resultados
+    format: Formato
+    worker: Worker
+    errors: Errores
+    warnings: Advertencias
+    error: Error
+    warning: Advertencia
+    valid: La configuración es válida.
+  cloudflare-cron-helper:
+    title: Ayudante de cron de Cloudflare
+    description: Valida los disparadores cron de Workers, los interpreta en lenguaje natural y genera el bloque [triggers] para wrangler.
+    inputLabel: Expresiones cron (una por línea)
+    hint: Cloudflare acepta expresiones estándar de 5 campos (minuto, hora, día del mes, mes y día de la semana).
+    results: Análisis de expresiones
+    empty: Añade una expresión cron por línea.
+    invalid: Expresión no válida
+    noValidExpressions: No hay expresiones válidas para exportar.
+    copy: Copiar
+    copied: Fragmento copiado

@@ -6,15 +6,25 @@ import type { HeadObject } from '@vueuse/head';
 import BaseLayout from './base.layout.vue';
 import FavoriteButton from '@/components/FavoriteButton.vue';
 import type { Tool } from '@/tools/tools.types';
+import { useToolStore } from '@/tools/tools.store';
 
 const route = useRoute();
+const toolStore = useToolStore();
+
+onMounted(() => toolStore.recordToolVisit(route.path));
+
+const { t } = useI18n();
+
+const i18nKey = computed<string>(() => route.path.trim().replace('/', ''));
+const toolTitle = computed<string>(() => t(`tools.${i18nKey.value}.title`, String(route.meta.name)));
+const toolDescription = computed<string>(() => t(`tools.${i18nKey.value}.description`, String(route.meta.description)));
 
 const head = computed<HeadObject>(() => ({
-  title: `${route.meta.name} - IT Tools`,
+  title: `${toolTitle.value} - Woolhner DevToolkit`,
   meta: [
     {
       name: 'description',
-      content: route.meta?.description as string,
+      content: toolDescription.value,
     },
     {
       name: 'keywords',
@@ -23,11 +33,6 @@ const head = computed<HeadObject>(() => ({
   ],
 }));
 useHead(head);
-const { t } = useI18n();
-
-const i18nKey = computed<string>(() => route.path.trim().replace('/', ''));
-const toolTitle = computed<string>(() => t(`tools.${i18nKey.value}.title`, String(route.meta.name)));
-const toolDescription = computed<string>(() => t(`tools.${i18nKey.value}.description`, String(route.meta.description)));
 </script>
 
 <template>
@@ -78,30 +83,29 @@ const toolDescription = computed<string>(() => t(`tools.${i18nKey.value}.descrip
   box-sizing: border-box;
 
   .tool-header {
-    padding: 40px 0;
+    padding: 32px 0;
     width: 100%;
 
     .n-h1 {
-      opacity: 0.9;
-      font-size: 40px;
-      font-weight: 400;
+      font-size: 34px;
+      font-weight: 650;
+      letter-spacing: -0.02em;
       margin: 0;
-      line-height: 1;
+      line-height: 1.15;
     }
 
     .separator {
-      width: 200px;
+      width: 48px;
       height: 2px;
-      background: rgb(161, 161, 161);
-      opacity: 0.2;
+      background: var(--wh-text);
 
-      margin: 10px 0;
+      margin: 14px 0;
     }
 
     .description {
       margin: 0;
-
-      opacity: 0.7;
+      color: var(--wh-text-muted);
+      line-height: 1.6;
     }
   }
 }

@@ -57,35 +57,40 @@ export default defineConfig({
       registerType: 'autoUpdate',
       strategies: 'generateSW',
       manifest: {
-        name: 'IT Tools',
-        description: 'Aggregated set of useful tools for developers.',
+        name: 'Woolhner DevToolkit',
+        short_name: 'DevToolkit',
+        description:
+          'Colección de herramientas prácticas para desarrolladores, ingenieros web y profesionales de TI.',
         display: 'standalone',
-        lang: 'fr-FR',
-        start_url: `${baseUrl}?utm_source=pwa&utm_medium=pwa`,
+        lang: 'es',
+        dir: 'ltr',
+        start_url: baseUrl,
+        scope: baseUrl,
         orientation: 'any',
-        theme_color: '#18a058',
-        background_color: '#f1f5f9',
+        theme_color: '#ffffff',
+        background_color: '#fafafa',
+        categories: ['utilities', 'developer'],
         icons: [
           {
-            src: '/favicon-16x16.png',
+            src: `${baseUrl}favicon-16x16.png`,
             type: 'image/png',
             sizes: '16x16',
           },
           {
-            src: '/favicon-32x32.png',
+            src: `${baseUrl}favicon-32x32.png`,
             type: 'image/png',
             sizes: '32x32',
           },
           {
-            src: '/android-chrome-192x192.png',
+            src: `${baseUrl}android-chrome-192x192.png`,
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: '/android-chrome-512x512.png',
+            src: `${baseUrl}android-chrome-512x512.png`,
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any maskable',
+            purpose: 'any',
           },
         ],
       },
@@ -109,6 +114,12 @@ export default defineConfig({
   },
   test: {
     exclude: [...configDefaults.exclude, '**/*.e2e.spec.ts'],
+    // iarna-toml-esm ships an ESM entry point inside a CommonJS package.
+    server: {
+      deps: {
+        inline: ['iarna-toml-esm'],
+      },
+    },
   },
   build: {
     target: 'esnext',

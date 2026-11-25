@@ -1,19 +1,37 @@
 <script setup lang="ts">
-import { IconDragDrop, IconHeart } from '@tabler/icons-vue';
+import { IconDragDrop, IconSearch } from '@tabler/icons-vue';
 import { useHead } from '@vueuse/head';
-import { computed } from 'vue';
 import Draggable from 'vuedraggable';
-import ColoredCard from '../components/ColoredCard.vue';
 import ToolCard from '../components/ToolCard.vue';
+import type { Tool } from '@/tools/tools.types';
 import { useToolStore } from '@/tools/tools.store';
-import { config } from '@/config';
 
 const toolStore = useToolStore();
 
-useHead({ title: 'IT Tools - Handy online tools for developers' });
 const { t } = useI18n();
+useHead({ title: computed(() => t('home.documentTitle')) });
+
+const searchQuery = ref('');
+const normalizedSearch = computed(() => searchQuery.value.trim().toLocaleLowerCase());
 
 const favoriteTools = computed(() => toolStore.favoriteTools);
+
+type SearchableTool = Pick<Tool, 'name' | 'description' | 'keywords'> & { category?: string };
+
+function matchesSearch(tool: SearchableTool) {
+  if (!normalizedSearch.value) {
+    return true;
+  }
+  return [tool.name, tool.description, tool.category ?? '', ...tool.keywords]
+    .join(' ')
+    .toLocaleLowerCase()
+    .includes(normalizedSearch.value);
+}
+
+const filteredTools = computed(() => toolStore.tools.filter(matchesSearch));
+const groupedTools = computed(() => toolStore.toolsByCategory
+  .map(category => ({ ...category, components: category.components.filter(matchesSearch) }))
+  .filter(category => category.components.length > 0));
 
 // Update favorite tools order when drag is finished
 function onUpdateFavoriteTools() {
@@ -22,103 +40,141 @@ function onUpdateFavoriteTools() {
 </script>
 
 <template>
-  <div class="pt-50px">
-    <div class="grid-wrapper">
-      <div class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">
-        <ColoredCard v-if="config.showBanner" :title="$t('home.follow.title')" :icon="IconHeart">
-          {{ $t('home.follow.p1') }}
-          <a
-            href="https://github.com/CorentinTh/it-tools"
-            rel="noopener"
-            target="_blank"
-            :aria-label="$t('home.follow.githubRepository')"
-          >GitHub</a>
-          {{ $t('home.follow.p2') }}
-          <a
-            href="https://x.com/ittoolsdottech"
-            rel="noopener"
-            target="_blank"
-            :aria-label="$t('home.follow.twitterXAccount')"
-          >X</a>.
-          {{ $t('home.follow.thankYou') }}
-          <n-icon :component="IconHeart" />
-        </ColoredCard>
+  <div class="home-page">
+    <div class="directory-header">
+      <div class="directory-title">
+        <IconSearch :size="22" />
+        <h1>{{ $t('search.label') }}</h1>
+      </div>
+      <c-input-text
+        v-model:value="searchQuery"
+        :label="$t('search.placeholder')"
+        :aria-label="$t('search.label')"
+        clearable
+        test-id="tool-search"
+      />
+    </div>
+
+    <template v-if="normalizedSearch">
+      <h3 class="section-title">
+        {{ $t('home.categories.searchResults', { count: filteredTools.length }) }}
+      </h3>
+      <div v-if="filteredTools.length > 0" class="tool-grid">
+        <ToolCard v-for="tool in filteredTools" :key="tool.path" :tool="tool" />
+      </div>
+      <div v-else class="empty-state">
+        <p>{{ $t('home.noResults') }}</p>
+        <c-button @click="searchQuery = ''">
+          {{ $t('home.clearSearch') }}
+        </c-button>
+      </div>
+    </template>
+
+    <template v-else>
+      <div v-if="toolStore.recentTools.length > 0">
+        <h3 class="section-title">
+          {{ $t('home.categories.recentTools') }}
+        </h3>
+        <div class="tool-grid">
+          <ToolCard v-for="tool in toolStore.recentTools" :key="tool.path" :tool="tool" />
+        </div>
       </div>
 
-      <transition name="height">
-        <div v-if="toolStore.favoriteTools.length > 0">
-          <h3 class="mb-5px mt-25px text-neutral-400 font-500">
-            {{ $t('home.categories.favoriteTools') }}
-            <c-tooltip :tooltip="$t('home.categories.favoritesDndToolTip')">
-              <n-icon :component="IconDragDrop" size="18" />
-            </c-tooltip>
-          </h3>
-          <Draggable
-            :list="favoriteTools"
-            class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4"
-            ghost-class="ghost-favorites-draggable"
-            item-key="name"
-            @end="onUpdateFavoriteTools"
-          >
-            <template #item="{ element: tool }">
-              <ToolCard :tool="tool" />
-            </template>
-          </Draggable>
-        </div>
-      </transition>
+      <div v-if="favoriteTools.length > 0">
+        <h3 class="section-title">
+          {{ $t('home.categories.favoriteTools') }}
+          <c-tooltip :tooltip="$t('home.categories.favoritesDndToolTip')">
+            <n-icon :component="IconDragDrop" size="16" />
+          </c-tooltip>
+        </h3>
+        <Draggable
+          :list="favoriteTools"
+          class="tool-grid"
+          ghost-class="ghost-favorites-draggable"
+          item-key="path"
+          @end="onUpdateFavoriteTools"
+        >
+          <template #item="{ element: tool }">
+            <ToolCard :tool="tool" />
+          </template>
+        </Draggable>
+      </div>
 
       <div v-if="toolStore.newTools.length > 0">
-        <h3 class="mb-5px mt-25px text-neutral-400 font-500">
-          {{ t('home.categories.newestTools') }}
+        <h3 class="section-title">
+          {{ $t('home.categories.newestTools') }}
         </h3>
-        <div class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">
-          <ToolCard v-for="tool in toolStore.newTools" :key="tool.name" :tool="tool" />
+        <div class="tool-grid">
+          <ToolCard v-for="tool in toolStore.newTools" :key="tool.path" :tool="tool" />
         </div>
       </div>
 
-      <h3 class="mb-5px mt-25px text-neutral-400 font-500">
-        {{ $t('home.categories.allTools') }}
-      </h3>
-      <div class="grid grid-cols-1 gap-12px lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 xl:grid-cols-4">
-        <ToolCard v-for="tool in toolStore.tools" :key="tool.name" :tool="tool" />
-      </div>
-    </div>
+      <section v-for="category in groupedTools" :key="category.name" class="category-section">
+        <h3 class="section-title">
+          {{ category.name }}
+        </h3>
+        <div class="tool-grid">
+          <ToolCard v-for="tool in category.components" :key="tool.path" :tool="tool" />
+        </div>
+      </section>
+    </template>
   </div>
 </template>
 
 <style scoped lang="less">
-.height-enter-active,
-.height-leave-active {
-  transition: all 0.5s ease-in-out;
-  overflow: hidden;
-  max-height: 500px;
+.home-page {
+  padding-top: 8px;
 }
 
-.height-enter-from,
-.height-leave-to {
-  max-height: 42px;
-  overflow: hidden;
-  opacity: 0;
-  margin-bottom: 0;
+.directory-header {
+  max-width: 720px;
+}
+
+.directory-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--wh-text-muted);
+  margin-bottom: 12px;
+
+  h1 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--wh-text);
+  }
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--wh-text-muted);
+  margin: 28px 0 12px;
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.category-section {
+  margin-bottom: 8px;
+}
+
+.empty-state {
+  border: 1px dashed var(--wh-border-strong);
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--wh-text-muted);
 }
 
 .ghost-favorites-draggable {
   opacity: 0.4;
-  background-color: #ccc;
-  border: 2px dashed #666;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transform: scale(1.1);
-  animation: ghost-favorites-draggable-animation 0.2s ease-out;
-}
-
-@keyframes ghost-favorites-draggable-animation {
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 0.4;
-    transform: scale(1.0);
-  }
+  border: 1px dashed var(--wh-border-strong);
 }
 </style>

@@ -6,8 +6,8 @@ const { icon, title } = toRefs(props);
 </script>
 
 <template>
-  <c-card class="colored-card">
-    <n-icon class="icon" size="40" :component="icon" />
+  <c-card class="notice-card">
+    <n-icon class="icon" size="32" :component="icon" />
     <n-h3 class="title">
       <n-ellipsis>{{ title }}</n-ellipsis>
     </n-h3>
@@ -21,35 +21,31 @@ const { icon, title } = toRefs(props);
 </template>
 
 <style lang="less" scoped>
-.colored-card {
-  background: rgb(37, 99, 108);
-  background: linear-gradient(48deg, rgba(37, 99, 108, 1) 0%, rgba(59, 149, 111, 1) 60%, rgba(20, 160, 88, 1) 100%);
-  color: #fff;
-  border: none;
+.notice-card {
+  background: var(--wh-surface-muted);
+  border: 1px solid var(--wh-border);
+  color: var(--wh-text);
 
   .icon {
-    opacity: 0.7;
+    color: var(--wh-text-muted);
   }
 
   .title {
-    color: #fff;
-
-    margin: 5px 0;
+    color: var(--wh-text);
+    margin: 8px 0 4px;
   }
 
   .description {
-    opacity: 0.8;
-
-    margin: 5px 0;
+    color: var(--wh-text-muted);
+    margin: 4px 0;
 
     ::v-deep(a) {
-      color: inherit;
+      color: var(--wh-text);
       text-decoration: underline;
-      font-weight: bold;
-      transition: color ease 0.2s;
+      font-weight: 600;
 
       &:hover {
-        color: rgb(20, 20, 20);
+        color: var(--wh-text-muted);
       }
     }
   }

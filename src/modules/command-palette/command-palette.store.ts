@@ -15,62 +15,63 @@ export const useCommandPaletteStore = defineStore('command-palette', () => {
   const toolStore = useToolStore();
   const styleStore = useStyleStore();
   const router = useRouter();
+  const { t } = useI18n();
   const searchPrompt = ref('');
 
-  const toolsOptions = toolStore.tools.map(tool => ({
+  const toolsOptions = computed(() => toolStore.tools.map(tool => ({
     ...tool,
     to: tool.path,
     toolCategory: tool.category,
-    category: 'Tools',
-  }));
+    category: t('commandPalette.categories.tools'),
+  })));
 
-  const searchOptions: PaletteOption[] = [
-    ...toolsOptions,
+  const searchOptions = computed<PaletteOption[]>(() => [
+    ...toolsOptions.value,
     {
-      name: 'Random tool',
-      description: 'Get a random tool from the list.',
+      name: t('commandPalette.randomTool'),
+      description: t('commandPalette.randomToolDescription'),
       action: () => {
         const { path } = _.sample(toolStore.tools)!;
         router.push(path);
       },
       icon: DiceIcon,
-      category: 'Tools',
-      keywords: ['random', 'tool', 'pick', 'choose', 'select'],
+      category: t('commandPalette.categories.tools'),
+      keywords: ['random', 'tool', 'pick', 'choose', 'select', 'aleatorio'],
       closeOnSelect: true,
     },
     {
-      name: 'Toggle dark mode',
-      description: 'Toggle dark mode on or off.',
+      name: t('commandPalette.toggleTheme'),
+      description: t('commandPalette.toggleThemeDescription'),
       action: () => styleStore.toggleDark(),
       icon: SunIcon,
-      category: 'Actions',
-      keywords: ['dark', 'theme', 'toggle', 'mode', 'light', 'system'],
+      category: t('commandPalette.categories.actions'),
+      keywords: ['dark', 'theme', 'toggle', 'mode', 'light', 'tema'],
     },
     {
-      name: 'Github repository',
+      name: t('commandPalette.upstreamRepository'),
       href: 'https://github.com/CorentinTh/it-tools',
-      category: 'External',
-      description: 'View the source code of it-tools on Github.',
-      keywords: ['github', 'repo', 'repository', 'source', 'code'],
+      category: t('commandPalette.categories.external'),
+      description: t('commandPalette.upstreamDescription'),
+      keywords: ['github', 'repo', 'repository', 'source', 'code', 'upstream'],
       icon: GithubIcon,
     },
     {
-      name: 'Report a bug or an issue',
-      description: 'Report a bug or an issue to help improve it-tools.',
+      name: t('commandPalette.reportIssue'),
+      description: t('commandPalette.reportIssueDescription'),
       href: 'https://github.com/CorentinTh/it-tools/issues/new/choose',
-      category: 'Actions',
-      keywords: ['report', 'issue', 'bug', 'problem', 'error'],
+      category: t('commandPalette.categories.actions'),
+      keywords: ['report', 'issue', 'bug', 'problem', 'error', 'error'],
       icon: BugIcon,
     },
     {
-      name: 'About',
-      description: 'Learn more about IT-Tools.',
+      name: t('commandPalette.about'),
+      description: t('commandPalette.aboutDescription'),
       to: '/about',
-      category: 'Pages',
-      keywords: ['about', 'learn', 'more', 'info', 'information'],
+      category: t('commandPalette.categories.pages'),
+      keywords: ['about', 'learn', 'more', 'info', 'information', 'acerca'],
       icon: InfoIcon,
     },
-  ];
+  ]);
 
   const { searchResult } = useFuzzySearch({
     search: searchPrompt,

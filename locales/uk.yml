@@ -1,72 +1,84 @@
+"404":
+  notFound: 404 Not Found
+  sorry: Sorry, this page does not seem to exist
+  maybe: Maybe the cache is doing tricky things, try force-refreshing?
+  backHome: Back home
 home:
   categories:
-    newestTools: Найновіші інструменти
-    favoriteTools: 'Ваші улюблені інструменти'
-    allTools: 'Усі інструменти'
-    favoritesDndToolTip: 'Перетягніть і відпустіть, щоб змінити порядок улюблених'
-  subtitle: 'Зручні інструменти для розробників'
-  toggleMenu: 'Перемикання меню'
-  home: Головна
-  uiLib: 'UI Бібліотека'
-  support: 'Підтримка розробки IT Tools'
-  buyMeACoffee: 'Купи мені каву'
-  follow:
-    title: 'Вам подобаються інструменти IT?'
-    p1: 'Додайте нам зірку на'
-    githubRepository: 'GitHub-репозиторій IT-Tools'
-    p2: 'або слідкуйте за нами на'
-    twitterXAccount: 'X-акаунт IT-Tools'
-    thankYou: 'Дякуємо!'
+    newestTools: Newest tools
+    recentTools: Recently used tools
+    favoriteTools: Your favorite tools
+    allTools: All tools
+    searchResults: Results ({count})
+    favoritesDndToolTip: Drag and drop to reorder favorites
+  subtitle: Practical tools for developers
+  toggleMenu: Toggle menu
+  home: Home
+  uiLib: UI library
+  footer:
+    basedOn: Based on
+    by: by
+    license: GPL-3.0
+  noResults: No tools match your search.
+  clearSearch: Clear search
   nav:
-    github: 'GitHub-репозиторій'
-    githubRepository: 'GitHub-репозиторій IT-Tools'
-    twitterX: 'X'
-    twitterXAccount: 'X-акаунт IT-Tools'
-    about: 'Про IT-Tools'
-    aboutLabel: 'Про нас'
-    darkMode: 'Темний режим'
-    lightMode: 'Світлий режим'
-    mode: 'Перемикання темного/світлого режиму'
+    github: GitHub repository
+    githubRepository: IT-Tools upstream repository
+    twitterX: X account
+    twitterXAccount: Woolhner X account
+    about: About
+    aboutLabel: About
+    darkMode: Dark mode
+    lightMode: Light mode
+    mode: Toggle dark/light mode
 about:
-  content: >
-    # Про IT-Tools
-
-    Цей чудовий вебсайт, створений з ❤ [Corentin Thomasset](https://corentin.tech?utm_source=it-tools&utm_medium=about), агрегує корисні інструменти для розробників і людей, які працюють в сфері IT. Якщо вам це корисно, будь ласка, поділіться цим з людьми, які, на вашу думку, також можуть знайти його корисним, і не забудьте додати його до закладок у вашій панелі швидкого доступу!
-
-    IT Tools є відкритим програмним забезпеченням (під ліцензією GPL-3.0) і безкоштовним, і завжди буде таким, але мені коштує гроші для хостингу і продовження доменного імені. Якщо ви хочете підтримати мою роботу і підтримати мене у додаванні нових інструментів, розгляньте можливість підтримки, [спонсоруючи мене](https://www.buymeacoffee.com/cthmsst).
-
-    ## Технології
-
-    IT Tools виконаний на Vue.js (Vue 3) з використанням бібліотеки компонентів Naive UI і розгортаний за допомогою Vercel. У деяких інструментах використовуються сторонні відкриті бібліотеки, повний список яких ви можете знайти в файлі [package.json](https://github.com/CorentinTh/it-tools/blob/main/package.json) репозиторію.
-
-    ## Знайшли баг? Відсутній інструмент?
-
-    Якщо вам потрібен інструмент, якого наразі немає тут, і ви вважаєте, що він може бути корисним, ви можете подати запит на додавання функції в [розділі проблем](https://github.com/CorentinTh/it-tools/issues/new/choose) у репозиторії GitHub.
-
-    А якщо ви знайшли баг або щось не працює, як очікувалося, будь ласка, подайте звіт про баг в [розділі проблем](https://github.com/CorentinTh/it-tools/issues/new/choose) у репозиторії GitHub.
-
-404:
-  notFound: '404 Сторінка не знайдена'
-  sorry: 'Вибачте, ця сторінка, схоже, не існує'
-  maybe: 'Можливо, кеш робить хитрощі, спробуйте примусово оновити сторінку?'
-  backHome: 'Повернутися на головну'
+  content: |
+    # About Woolhner DevToolkit
+    Woolhner DevToolkit is a collection of practical, local-first tools for developers, web engineers and IT professionals. It is maintained by [Woolhner](https://woolhner.com) as a derivative of the original open-source project [IT-Tools](https://github.com/CorentinTh/it-tools), created by [Corentin Thomasset](https://corentin.tech).
+    Every transformation runs in your browser. There are no accounts, no databases and no analytics. Some tools (for example MAC address lookup) clearly disclose when an external service is used.
+    ## License and attribution
+    This derivative is distributed under the original [GNU GPL-3.0 license](https://www.gnu.org/licenses/gpl-3.0.html). The original author and third-party notices are preserved in `UPSTREAM.md`, `LICENSE` and `package.json`.
+    ## Technologies
+    Built with Vue 3, TypeScript, Vite, Naive UI, UnoCSS, Pinia and Vue I18n. The static build is designed for Cloudflare Pages; see `DEPLOYMENT.md`.
+    ## Found a bug?
+    Please report issues in the [upstream issue tracker](https://github.com/CorentinTh/it-tools/issues/new/choose) when they affect original tools, and document Woolhner-specific issues in the product repository.
 favoriteButton:
-  remove: 'Вилучити з обраних'
-  add: 'Додати до обраних'
+  remove: Remove from favorites
+  add: Add to favorites
 toolCard:
-  new: Новий
+  new: New
 search:
-  label: Пошук
+  label: Search tools
+  placeholder: Search by name, description or keyword
 tools:
   categories:
-    favorite-tools: 'Ваші улюблені інструменти'
-    crypto: Крипта
-    converter: Конвертер
-    web: Веб
-    images and videos: 'Зображення та відео'
-    development: Розробка
-    network: Мережа
-    math: Математика
-    measurement: Вимірювання
-    text: Текст
-    data: Дані
+    favorite-tools: Your favorite tools
+    development: Development
+    generators: Generators
+    converters: Converters
+    web & api: Web & API
+    networking: Networking
+    security: Security
+    text & data: Text & Data
+    mathematics: Mathematics
+    images & qr: Images & QR
+    measurement: Measurement
+    cloudflare: Cloudflare
+commandPalette:
+  categories:
+    tools: Tools
+    actions: Actions
+    pages: Pages
+    external: External
+  placeholder: Search a tool or a command...
+  noResults: No results found.
+  randomTool: Random tool
+  randomToolDescription: Open a random tool from the directory.
+  toggleTheme: Toggle dark mode
+  toggleThemeDescription: Switch between light and dark themes.
+  upstreamRepository: Upstream repository
+  upstreamDescription: View the original IT-Tools source code on GitHub.
+  reportIssue: Report an issue
+  reportIssueDescription: Report a bug in the upstream project.
+  about: About
+  aboutDescription: Learn more about Woolhner DevToolkit.
