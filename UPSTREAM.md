@@ -100,8 +100,10 @@ Vue UI, index definition, locale entries and unit tests:
 ### Deployment and developer documentation
 
 - Added `public/_redirects` for Cloudflare Pages SPA routing.
-- Added `DEPLOYMENT.md` with Pages build settings, base-path guidance and PWA
-  verification steps.
+- Added `DEPLOYMENT.md` with Pages and Worker build settings, base-path guidance
+  and PWA verification steps.
+- Added `wrangler.jsonc` and a GitHub Actions workflow for Worker static-asset
+  deployment.
 - Rewrote `README.md` for the derivative and updated `public/humans.txt`.
 - Updated `scripts/create-tool.mjs` templates for the new product name.
 - Updated existing Playwright specs to expect the new document title suffix and

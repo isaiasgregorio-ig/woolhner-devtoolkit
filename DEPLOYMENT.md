@@ -70,6 +70,29 @@ BASE_URL=/toolkit/ pnpm build
 When using a subdirectory, also update the canonical/OG/Twitter URLs in
 `index.html`.
 
+## Cloudflare Worker with static assets
+
+A Worker deployment is also configured. `wrangler.jsonc` serves `dist/` as
+static assets and maps unknown routes to `index.html` through
+`not_found_handling: "single-page-application"`.
+
+Manual deployment (requires an authenticated Wrangler session):
+
+```sh
+pnpm build
+wrangler deploy --config wrangler.jsonc
+```
+
+The included workflow `.github/workflows/deploy-worker.yml` builds and deploys
+on pushes to `woolhner-devtoolkit-branding` and on manual dispatch. Add these
+repository secrets first:
+
+- `CLOUDFLARE_API_TOKEN` — token with Workers Scripts edit permission.
+- `CLOUDFLARE_ACCOUNT_ID` — Cloudflare account ID.
+
+The Worker name is `woolhner-devtoolkit`; change it in `wrangler.jsonc` if that
+name is unavailable.
+
 ## PWA
 
 `vite-plugin-pwa` generates the web app manifest, service worker and pre-cache
