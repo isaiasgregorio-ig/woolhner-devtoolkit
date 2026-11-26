@@ -37,6 +37,10 @@ jobs:
           name: woolhner-devtoolkit-dist
           path: dist/
 
+      # Workers uses not_found_handling for SPA routing; Pages' _redirects is rejected.
+      - name: Remove Pages-specific redirect file
+        run: rm -f dist/_redirects
+
       - name: Deploy static assets to Cloudflare Worker
         uses: cloudflare/wrangler-action@v3
         with:

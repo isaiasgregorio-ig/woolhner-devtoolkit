@@ -80,6 +80,8 @@ Manual deployment (requires an authenticated Wrangler session):
 
 ```sh
 pnpm build
+# Workers uses not_found_handling for SPA routing; Pages' _redirects is rejected.
+rm -f dist/_redirects
 wrangler deploy --config wrangler.jsonc
 ```
 
