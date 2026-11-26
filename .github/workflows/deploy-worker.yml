@@ -31,6 +31,12 @@ jobs:
       - name: Build static app
         run: pnpm build
 
+      - name: Upload built static assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: woolhner-devtoolkit-dist
+          path: dist/
+
       - name: Deploy static assets to Cloudflare Worker
         uses: cloudflare/wrangler-action@v3
         with:
