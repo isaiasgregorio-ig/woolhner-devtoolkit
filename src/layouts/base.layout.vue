@@ -64,7 +64,7 @@ const tools = computed<ToolCategory[]>(() => [
             <c-link
               target="_blank"
               rel="noopener"
-              :href="`https://github.com/CorentinTh/it-tools/tree/v${version}`"
+              href="https://github.com/isaiasgregorio-ig/woolhner-devtoolkit/releases"
             >
               v{{ version }}
             </c-link>
@@ -73,22 +73,14 @@ const tools = computed<ToolCategory[]>(() => [
               <c-link
                 target="_blank"
                 rel="noopener"
-                :href="`https://github.com/CorentinTh/it-tools/tree/${commitSha}`"
+                :href="`https://github.com/isaiasgregorio-ig/woolhner-devtoolkit/tree/${commitSha}`"
               >
                 {{ commitSha }}
               </c-link>
             </template>
           </div>
           <div class="footer-attribution">
-            {{ $t('home.footer.basedOn') }}
-            <c-link target="_blank" rel="noopener" href="https://github.com/CorentinTh/it-tools">
-              IT-Tools
-            </c-link>
-            {{ $t('home.footer.by') }}
-            <c-link target="_blank" rel="noopener" href="https://corentin.tech">
-              Corentin Thomasset
-            </c-link>
-            · {{ $t('home.footer.license') }}
+            {{ $t('home.footer.license') }}
           </div>
           <div>
             © {{ new Date().getFullYear() }}

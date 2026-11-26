@@ -1,8 +1,7 @@
 /* TEAM */
-Original developer: Corentin Thomasset
-Original project: https://github.com/CorentinTh/it-tools
-Derivative product: Woolhner DevToolkit — https://woolhner.com
-Original project license: GNU GPL-3.0
+Product: Woolhner DevToolkit — https://woolhner.com
+Source: https://github.com/isaiasgregorio-ig/woolhner-devtoolkit
+License: GNU GPL-3.0
 
 /* THANKS */
 Built with the open-source Vue, TypeScript and Vite ecosystem.

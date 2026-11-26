@@ -17,14 +17,12 @@ home:
   home: Inicio
   uiLib: Biblioteca de UI
   footer:
-    basedOn: Basado en
-    by: por
     license: GPL-3.0
   noResults: Ninguna herramienta coincide con tu búsqueda.
   clearSearch: Borrar búsqueda
   nav:
     github: Repositorio de GitHub
-    githubRepository: Repositorio original de IT-Tools en GitHub
+    githubRepository: Repositorio de GitHub de Woolhner DevToolkit
     twitterX: Cuenta X
     twitterXAccount: Cuenta X de Woolhner
     about: Acerca de
@@ -38,10 +36,7 @@ about:
 
     Woolhner DevToolkit es una colección de herramientas prácticas que funcionan
     primero en el navegador, pensadas para desarrolladores, ingenieros web y
-    profesionales de TI. Es mantenido por [Woolhner](https://woolhner.com) como una
-    derivación del proyecto original de código abierto
-    [IT-Tools](https://github.com/CorentinTh/it-tools), creado por
-    [Corentin Thomasset](https://corentin.tech).
+    profesionales de TI. Es mantenido por [Woolhner](https://woolhner.com).
 
     Cada transformación se realiza en tu navegador. No hay cuentas, bases de datos
     ni analítica. Algunas herramientas (por ejemplo, la consulta de direcciones MAC)
@@ -49,10 +44,9 @@ about:
 
     ## Licencia y atribución
 
-    Esta derivación se distribuye bajo la licencia original
-    [GNU GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.html). Se conservan el autor
-    original y los avisos de terceros en `UPSTREAM.md`, `LICENSE` y
-    `package.json`.
+    Esta derivación se distribuye bajo la licencia
+    [GNU GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.html). Los avisos legales
+    y de terceros se conservan en `UPSTREAM.md`, `LICENSE` y `package.json`.
 
     ## Tecnologías
 
@@ -62,10 +56,8 @@ about:
 
     ## ¿Encontraste un error?
 
-    Informa de los problemas que afecten a las herramientas originales en el
-    [registro de incidencias original](https://github.com/CorentinTh/it-tools/issues/new/choose)
-    y documenta los problemas específicos de Woolhner en el repositorio del
-    producto.
+    Informa de los problemas en el
+    [repositorio del producto](https://github.com/isaiasgregorio-ig/woolhner-devtoolkit/issues/new/choose).
 favoriteButton:
   remove: Quitar de favoritos
   add: Añadir a favoritos
@@ -83,10 +75,10 @@ commandPalette:
   randomToolDescription: Abre una herramienta aleatoria del directorio.
   toggleTheme: Alternar modo oscuro
   toggleThemeDescription: Cambia entre el tema claro y el oscuro.
-  upstreamRepository: Repositorio original
-  upstreamDescription: Ver el código fuente original de IT-Tools en GitHub.
+  sourceRepository: Repositorio de código
+  sourceDescription: Ver el código fuente de Woolhner DevToolkit en GitHub.
   reportIssue: Informar de un problema
-  reportIssueDescription: Informar de un error en el proyecto original.
+  reportIssueDescription: Informar de un error en Woolhner DevToolkit.
   about: Acerca de
   aboutDescription: Más información sobre Woolhner DevToolkit.
 search:

@@ -15,11 +15,8 @@
 
 ## Qué es
 
-Woolhner DevToolkit es una derivación de
-[IT-Tools](https://github.com/CorentinTh/it-tools), el proyecto original de
-[Corentin Thomasset](https://corentin.tech). Conserva las 89 herramientas
-originales, añade tres utilidades reales para Cloudflare y reorganiza el
-directorio en once categorías:
+Woolhner DevToolkit incluye 89 herramientas prácticas, añade tres utilidades
+reales para Cloudflare y organiza el directorio en once categorías:
 
 - Desarrollo
 - Generadores
@@ -100,17 +97,11 @@ ha inventado ningún color, tipografía ni logotipo «oficial». El sistema de
 tokens, las decisiones documentadas y el origen de cada recurso están en
 [`BRAND.md`](BRAND.md).
 
-## Atribución y licencia
+## Licencia
 
-Este proyecto es una obra derivada de IT-Tools, creado por Corentin Thomasset y
-distribuido originalmente bajo GNU GPL-3.0. Se conservan el autor, la licencia,
-los avisos de terceros y el historial del repositorio original. Los cambios
-realizados por Woolhner se enumeran en [`UPSTREAM.md`](UPSTREAM.md).
+Este proyecto se distribuye bajo [GNU GPL-3.0](LICENSE). Los avisos legales y
+de terceros se conservan en [`UPSTREAM.md`](UPSTREAM.md) y en los metadatos del
+paquete.
 
 - Licencia: [GNU GPL-3.0](LICENSE)
-- Proyecto original: [CorentinTh/it-tools](https://github.com/CorentinTh/it-tools)
-- Autor original: [Corentin Thomasset](https://corentin.tech)
-- Mantenedor de la derivación: [Woolhner](https://woolhner.com)
-
-No se ha enviado nada al repositorio original; todo el trabajo de esta
-derivación se realizó en una rama local.
+- Mantenedor del producto: [Woolhner](https://woolhner.com)

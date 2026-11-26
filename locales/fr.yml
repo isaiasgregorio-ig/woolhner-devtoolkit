@@ -16,14 +16,12 @@ home:
   home: Home
   uiLib: UI library
   footer:
-    basedOn: Based on
-    by: by
     license: GPL-3.0
   noResults: No tools match your search.
   clearSearch: Clear search
   nav:
     github: GitHub repository
-    githubRepository: IT-Tools upstream repository
+    githubRepository: Woolhner DevToolkit GitHub repository
     twitterX: X account
     twitterXAccount: Woolhner X account
     about: About
@@ -34,14 +32,14 @@ home:
 about:
   content: |
     # About Woolhner DevToolkit
-    Woolhner DevToolkit is a collection of practical, local-first tools for developers, web engineers and IT professionals. It is maintained by [Woolhner](https://woolhner.com) as a derivative of the original open-source project [IT-Tools](https://github.com/CorentinTh/it-tools), created by [Corentin Thomasset](https://corentin.tech).
+    Woolhner DevToolkit is a collection of practical, local-first tools for developers, web engineers and IT professionals. It is maintained by [Woolhner](https://woolhner.com).
     Every transformation runs in your browser. There are no accounts, no databases and no analytics. Some tools (for example MAC address lookup) clearly disclose when an external service is used.
     ## License and attribution
-    This derivative is distributed under the original [GNU GPL-3.0 license](https://www.gnu.org/licenses/gpl-3.0.html). The original author and third-party notices are preserved in `UPSTREAM.md`, `LICENSE` and `package.json`.
+    This derivative is distributed under the [GNU GPL-3.0 license](https://www.gnu.org/licenses/gpl-3.0.html). Legal and third-party notices are preserved in `UPSTREAM.md`, `LICENSE` and `package.json`.
     ## Technologies
     Built with Vue 3, TypeScript, Vite, Naive UI, UnoCSS, Pinia and Vue I18n. The static build is designed for Cloudflare Pages; see `DEPLOYMENT.md`.
     ## Found a bug?
-    Please report issues in the [upstream issue tracker](https://github.com/CorentinTh/it-tools/issues/new/choose) when they affect original tools, and document Woolhner-specific issues in the product repository.
+    Please report issues in the [product repository](https://github.com/isaiasgregorio-ig/woolhner-devtoolkit/issues/new/choose).
 toolCard:
   new: New
 search:
@@ -89,9 +87,9 @@ commandPalette:
   randomToolDescription: Open a random tool from the directory.
   toggleTheme: Toggle dark mode
   toggleThemeDescription: Switch between light and dark themes.
-  upstreamRepository: Upstream repository
-  upstreamDescription: View the original IT-Tools source code on GitHub.
+  sourceRepository: Source repository
+  sourceDescription: View the Woolhner DevToolkit source code on GitHub.
   reportIssue: Report an issue
-  reportIssueDescription: Report a bug in the upstream project.
+  reportIssueDescription: Report a bug in Woolhner DevToolkit.
   about: About
   aboutDescription: Learn more about Woolhner DevToolkit.
